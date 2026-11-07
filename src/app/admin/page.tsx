@@ -71,7 +71,7 @@ export default function AdminPage() {
           ))}
         </div>
       )}
-      {tab === "orders" && <div className="clay p-5 mt-6 text-sm"><p>Order statuses: Order Received → Confirmed → Processing → Dispatched → Out for Delivery → Delivered, or Cancelled.</p><p className="text-[#777777] mt-2">No orders yet. Orders placed on the live site (Supabase connected) will list here with status controls.</p></div>}
+      {tab === "orders" && <div className="clay p-5 mt-6 text-sm"><p>Order statuses: Order Received, Confirmed, Processing, Dispatched, Out for Delivery, Delivered — or Cancelled.</p><p className="text-[#777777] mt-2">No orders yet. Orders placed on the live site (Supabase connected) will list here with status controls.</p></div>}
       {tab === "customers" && <div className="clay p-5 mt-6 text-sm">Customers who create accounts in Supabase Auth appear here (profiles table). No customers yet in this demo.</div>}
       {tab === "settings" && (
         <div className="clay p-5 mt-6 space-y-3 text-sm">

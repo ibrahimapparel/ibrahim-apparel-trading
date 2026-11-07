@@ -7,28 +7,64 @@
   --color-mocha: #92765c;
   --color-taupe: #b5a58e;
   --color-gold: #aa7f30;
+  --font-serif: "Marcellus", Georgia, "Times New Roman", serif;
+  --font-sans: "Jost", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
-:root { color-scheme: light; }
-html.dark { color-scheme: dark; }
-
-body { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
-
-.clay {
-  background: #fff;
-  border: 1px solid rgba(23, 43, 58, 0.08);
-  border-radius: 1.25rem;
-  box-shadow: 8px 8px 20px rgba(23, 43, 58, 0.08), -4px -4px 12px rgba(255, 255, 255, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+/* Claymorphism tokens — copied from the HTML store */
+:root {
+  --clay: 10px 10px 22px rgba(23, 43, 58, 0.10), -8px -8px 18px rgba(255, 255, 255, 0.9), inset 2px 2px 5px rgba(255, 255, 255, 0.8), inset -3px -3px 7px rgba(23, 43, 58, 0.05);
+  --clay-sm: 6px 6px 14px rgba(23, 43, 58, 0.09), -5px -5px 12px rgba(255, 255, 255, 0.85), inset 1px 1px 3px rgba(255, 255, 255, 0.8), inset -2px -2px 4px rgba(23, 43, 58, 0.05);
+  --clay-in: inset 4px 4px 9px rgba(23, 43, 58, 0.10), inset -4px -4px 9px rgba(255, 255, 255, 0.8);
+  color-scheme: light;
 }
-html.dark .clay {
-  background: #1e3444;
-  border-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+html.dark {
+  color-scheme: dark;
+  --clay: 10px 10px 24px rgba(0, 0, 0, 0.45), -8px -8px 18px rgba(255, 255, 255, 0.05), inset 2px 2px 5px rgba(255, 255, 255, 0.07), inset -3px -3px 7px rgba(0, 0, 0, 0.35);
+  --clay-sm: 6px 6px 14px rgba(0, 0, 0, 0.4), -5px -5px 12px rgba(255, 255, 255, 0.04), inset 1px 1px 3px rgba(255, 255, 255, 0.06), inset -2px -2px 4px rgba(0, 0, 0, 0.3);
+  --clay-in: inset 4px 4px 9px rgba(0, 0, 0, 0.4), inset -4px -4px 9px rgba(255, 255, 255, 0.05);
 }
+
+body { font-family: var(--font-sans); background: #faf8f4; }
+html.dark body { background: #172b3a; }
+
+/* Clay surfaces — in the components layer so Tailwind utilities (e.g. rounded-full) still win on radius */
+@layer components {
+  .clay {
+    background: #ffffff;
+    border: none;
+    border-radius: 24px;
+    box-shadow: var(--clay);
+  }
+  html.dark .clay { background: #1a2d3a; }
+  .clay-sm {
+    background: #ffffff;
+    border: none;
+    border-radius: 16px;
+    box-shadow: var(--clay-sm);
+  }
+  html.dark .clay-sm { background: #1a2d3a; }
+  .clay-in {
+    border: none;
+    border-radius: 16px;
+    box-shadow: var(--clay-in);
+  }
+  /* Chunky clay button — puffy, rounded, soft shadow */
+  .clay-btn {
+    border: none;
+    border-radius: 16px;
+    box-shadow: var(--clay-sm);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .clay-btn:hover { transform: translateY(-1px); }
+  .clay-btn:active { transform: translateY(0); box-shadow: var(--clay-in); }
+}
+
 ::selection { background: #92765c; color: #faf8f4; }
+html.dark ::selection { background: #c8a37e; color: #172b3a; }
 
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.announce-track { animation: ticker 60s linear infinite; }
+.announce-track { animation: ticker 60s linear infinite; will-change: transform; }
 .announce-track:hover { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .announce-track { animation: none; } }
 

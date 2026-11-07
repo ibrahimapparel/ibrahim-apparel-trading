@@ -7,7 +7,8 @@ export default function Home() {
   const puffer = PRODUCTS.find((p) => p.id === "p1")!;
   const shawl = PRODUCTS.find((p) => p.id === "l7")!;
   const featured = PRODUCTS.filter((p) => p.isNew);
-  const best = PRODUCTS.slice(0, 8);
+  // Best Sellers must be distinct from New Arrivals — only non-new products here.
+  const best = PRODUCTS.filter((p) => !p.isNew).slice(0, 8);
   return (
     <div>
       {/* Editorial / Magazine hero — desktop/tablet only */}
@@ -17,8 +18,8 @@ export default function Home() {
           <h1 className="font-serif text-6xl lg:text-7xl font-bold text-[#172b3a] dark:text-[#faf8f4] mt-3">WINTER, REDEFINED.</h1>
           <p className="text-[#777777] dark:text-[#e9dfd0] text-lg mt-3">Premium winter essentials. Comfort Meets Class.</p>
           <div className="flex gap-3 justify-center mt-6">
-            <Link href="/collection/winters" className="bg-[#172b3a] dark:bg-[#aa7f30] text-white px-7 py-3 rounded-full font-medium">SHOP WINTER COLLECTION</Link>
-            <Link href="/collection/new-arrivals" className="border border-[#92765c] text-[#172b3a] dark:text-[#faf8f4] px-7 py-3 rounded-full font-medium">EXPLORE NEW ARRIVALS</Link>
+            <Link href="/collection/winters" className="clay-btn bg-[#172b3a] dark:bg-[#aa7f30] text-white px-7 py-3 rounded-full font-medium">SHOP WINTER COLLECTION</Link>
+            <Link href="/collection/new-arrivals" className="clay-btn bg-white dark:bg-[#1a2d3a] border border-[#92765c] text-[#172b3a] dark:text-[#faf8f4] px-7 py-3 rounded-full font-medium">EXPLORE NEW ARRIVALS</Link>
           </div>
         </div>
         <div className="max-w-5xl mx-auto px-4 pb-12 relative">
@@ -59,7 +60,7 @@ export default function Home() {
         <h2 className="font-serif text-3xl font-bold mb-1">Shop by Category</h2>
         <p className="text-[#777777] dark:text-[#e9dfd0] mb-6">Winters, Shirts, Pants, Korean Trousers, Casual Wear &amp; Ladies.</p>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {[["Winters", "winters", PRODUCTS[0].image], ["Ladies", "ladies", PRODUCTS[14].image], ["Shirts", "shirts", PRODUCTS[5].image], ["Pants", "pants", PRODUCTS[11].image], ["Hoodies", "winters", PRODUCTS[3].image], ["Sale", "sale", PRODUCTS[0].image]].map(([label, slug, img]) => (
+          {[["Winters", "winters", PRODUCTS[0].image], ["Ladies", "ladies", PRODUCTS[14].image], ["Shirts", "shirts", PRODUCTS[5].image], ["Pants", "pants", PRODUCTS[11].image], ["Hoodies", "winters", PRODUCTS[3].image], ["Sale", "sale", "/images/heritage-bomber-jacket.webp"]].map(([label, slug, img]) => (
             <Link key={label} href={`/collection/${slug}`} className="clay overflow-hidden block">
               <Image src={img as string} alt={label as string} width={400} height={300} className="w-full h-36 object-cover" />
               <p className="p-3 font-semibold text-center">{label}</p>
@@ -76,7 +77,6 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-4 py-8">
         <h2 className="font-serif text-3xl font-bold mb-6">Best Sellers</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">{best.map((p) => <ProductCard key={p.id} p={p} />)}</div>
-        <p className="text-sm text-[#777777] mt-8">Reviews appear here only from real customers — no testimonials are fabricated.</p>
       </section>
     </div>
   );

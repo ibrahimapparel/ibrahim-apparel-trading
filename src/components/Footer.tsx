@@ -36,7 +36,7 @@ export default function Footer() {
           <p className="text-sm text-[#e9dfd0] mt-2">Cash on Delivery available nationwide. Free shipping on orders over Rs 5,000.</p>
         </div>
       </div>
-      <div className="border-t border-white/10 py-4 text-center text-xs text-[#e9dfd0]">© {new Date().getFullYear()} Ibrahim Apparel &amp; Trading (Private) Limited. All rights reserved.</div>
+      <div className="border-t border-white/10 py-4 text-center text-xs text-[#e9dfd0]">© 2026 Ibrahim Apparel &amp; Trading (Private) Limited. All rights reserved.</div>
     </footer>
   );
 }

@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Marcellus, Jost } from "next/font/google";
 import "./globals.css";
 import Header, { Ticker, WhatsAppButton } from "@/components/Header";
 import Footer from "@/components/Footer";
 import { StoreProvider } from "@/lib/store";
 import { AuthProvider } from "@/lib/auth";
 
-const serif = Playfair_Display({ variable: "--font-serif", subsets: ["latin"] });
-const sans = Inter({ variable: "--font-sans", subsets: ["latin"] });
+const serif = Marcellus({ weight: "400", variable: "--font-serif", subsets: ["latin"] });
+const sans = Jost({ variable: "--font-sans", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ibrahim Apparel & Trading (Private) Limited — Winter, Redefined.",

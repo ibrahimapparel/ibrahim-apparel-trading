@@ -22,12 +22,20 @@ export default async function CollectionPage({ params, searchParams }: { params:
       <h1 className="font-serif text-4xl font-bold capitalize">{title}</h1>
       <p className="text-[#777777] dark:text-[#e9dfd0] mt-1">{list.length} products {sp.cat ? `· ${sp.cat}` : ""}</p>
       <div className="flex gap-2 mt-6 flex-wrap">
-        <a href={`/collection/${slug}`} className="px-4 py-2 rounded-full border text-sm">All</a>
+        <a href={`/collection/${slug}`} className="clay-sm px-4 py-2 rounded-full text-sm bg-white dark:bg-[#1a2d3a]">All</a>
         {(nav?.children ?? []).map((c) => (
-          <a key={c} href={`/collection/${slug}?cat=${encodeURIComponent(c)}`} className="px-4 py-2 rounded-full border text-sm hover:bg-[#e9dfd0] dark:hover:bg-white/10">{c}</a>
+          <a key={c} href={`/collection/${slug}?cat=${encodeURIComponent(c)}`} className="clay-sm px-4 py-2 rounded-full text-sm bg-white dark:bg-[#1a2d3a] hover:bg-[#e9dfd0] dark:hover:bg-white/10">{c}</a>
         ))}
-        <span className="ml-auto flex gap-2 text-sm">
-          <a href={`/collection/${slug}?sort=price-asc`}>Price ↑</a>·<a href={`/collection/${slug}?sort=price-desc`}>Price ↓</a>·<a href={`/collection/${slug}?sort=name`}>Name</a>
+        <span className="ml-auto flex gap-2 text-sm items-center">
+          <a href={`/collection/${slug}?sort=price-asc`} className="inline-flex items-center gap-1">Price
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
+          </a>
+          <span className="text-[#b5a58e]">·</span>
+          <a href={`/collection/${slug}?sort=price-desc`} className="inline-flex items-center gap-1">Price
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7" /></svg>
+          </a>
+          <span className="text-[#b5a58e]">·</span>
+          <a href={`/collection/${slug}?sort=name`}>Name</a>
         </span>
       </div>
       {list.length === 0 ? <p className="py-12 text-center text-[#777777]">No products in this collection yet.</p> : (
